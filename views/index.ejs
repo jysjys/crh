@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+		html,body,ul,li {
+			margin: 0;
+			padding: 0;
+			background: #f2f2f2;
+		}
+		html,body {
+			width: 100%;
+			height: 100%;
+			color: #333333;
+		}
+
+		.coat {
+			height: 100%;
+			position: relative;
+			top: 50%;
+			margin-top: -50px
+		}
+		.coat ul {
+			list-style: none;
+
+		}
+		.coat ul li {
+			margin: 0 auto;
+			margin-bottom: 30px;
+		}
+		.coat ul li input {
+			border-radius: 3px;
+			border: 1px solid ;
+		}
+		.coat ul li div {
+			text-align: center;
+			width: 76%;
+			height: 30px;
+			line-height: 27px;
+			background: #DA8331;
+			border-radius: 4px;
+			padding: 3px;
+			color: #ffffff;
+			margin-bottom: 10px;
+			transition: all 0.7s;
+			box-sizing: border-box;
+		}
+		.coat ul li div:hover {
+			background: #ffffff;
+			color: #DA8331;
+			border: 1px solid #DA8331;
+			line-height: 24px;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+<div class="container coat">
+	<ul class="col-md-12">
+		<li class="col-md-6">
+			<span>手机号：</span><input type="" name="phone">
+		</li>
+		<li class="col-md-6">
+			<span>验证码：</span><input type="" name="epid">
+		</li>
+		<li class="col-md-6">
+			<div class="btn_send">发送验证码</div>
+			<div class="btn_sure">确定</div>
+		</li>
+	</ul>
+</div>
+<script
+type="text/javascript"
+src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	// 验证码t
+
+var data = {
+	phone: '15110277440'
+}
+$('.btn_send').click(function () {
+	$.ajax({
+		type: 'POST',
+		data: JSON.stringify(data),
+		url: '/send-msg',
+		success: function (data) {
+			console.log(data);
+		}
+	})
+})
+// $('.btn_send').click(function() {
+// 	var data = $("input[name = 'phone']").val();
+// 	console.log(data);
+// 	$.ajax({
+// 		type: 'POST',
+// 		data: data,
+// 		url: 'localhost:3000/',
+// 		success: function (data) {
+// 			console.log('===> test')
+// 			console.log(data);
+// 		},
+// 		error: function () {
+// 			console.log('something with wrong!')
+// 		}
+// 	})
+// });
+
+$('.btn_sure').click(function() {
+	$.ajax({
+		type: 'GET',
+		url: '/login',
+		success: function(data) {
+			console.log(data);
+		}
+	});
+});
+</script>
+</body>
+</html>
